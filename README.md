@@ -3,8 +3,8 @@
 This is a custom, simple iFrame widget for Homarr that I made using JavaScript and Express server.
 
 Previews:
-![[cpu.png]]![[ram.png]]![[disk.png]]
+![CPU](./previews/cpu.png) ![RAM](./previews/ram.png) ![Disk](./previews/disk.png)
 
-![[uptime.png]]![[network.png]]![[cpu_temp.png]]
+![Uptime](./previews/uptime.png) ![Network](./previews/network.png) ![CPU Temp](./previews/cpu_temp.png)
 
 ---
