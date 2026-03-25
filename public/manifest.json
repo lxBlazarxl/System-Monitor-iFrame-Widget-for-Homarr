@@ -1,6 +1,6 @@
 {
-  "name": "Disk Monitor",
-  "short_name": "Disk",
+  "name": "System Monitor",
+  "short_name": "Monitor",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#121214",
