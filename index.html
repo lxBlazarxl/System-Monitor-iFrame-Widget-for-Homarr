@@ -1,0 +1,137 @@
+<!doctype html>
+<html style="color-scheme: dark; background: transparent">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      :root {
+        --spotify-green: #1db954;
+      }
+      body {
+        margin: 0;
+        font-family:
+          "Inter",
+          system-ui,
+          -apple-system,
+          sans-serif;
+        color: white;
+        overflow: hidden;
+        background: transparent;
+      }
+
+      .widget-container {
+        display: flex;
+        align-items: center;
+        height: 100vh;
+        padding: 0 12px;
+        background: rgba(15, 15, 15, 0.4);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        gap: 10px;
+      }
+
+      .album-art {
+        width: 38px;
+        height: 38px;
+        border-radius: 6px;
+        object-fit: cover;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        flex-shrink: 0;
+        display: none;
+      }
+
+      .text-content {
+        flex: 1;
+        min-width: 0; /* Required for text truncation */
+        display: flex;
+        flex-direction: column;
+      }
+
+      .title-wrapper {
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      .title {
+        font-size: 13px;
+        font-weight: 600;
+        display: inline-block;
+        margin: 0;
+      }
+
+      .artist {
+        font-size: 11px;
+        opacity: 0.6;
+        margin: 2px 0 0 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      /* The "Scrolling" animation if title is too long */
+      .scroll {
+        animation: marquee 8s linear infinite;
+        padding-right: 50px;
+      }
+
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="widget-container">
+      <img id="art" src="" class="album-art" />
+      <div class="text-content">
+        <div class="title-wrapper">
+          <p id="title" class="title">Connecting...</p>
+        </div>
+        <p id="artist" class="artist">Spotify</p>
+      </div>
+    </div>
+
+    <script>
+      async function update() {
+        try {
+          const res = await fetch("/api/spotify/now-playing");
+          const data = await res.json();
+
+          const titleEl = document.getElementById("title");
+          const artEl = document.getElementById("art");
+
+          if (data.isPlaying) {
+            titleEl.innerText = data.title;
+            document.getElementById("artist").innerText = data.artist;
+            artEl.src = data.albumArt;
+            artEl.style.display = "block";
+
+            // Add scroll if title is long (approx > 20 chars)
+            if (data.title.length > 20) {
+              titleEl.innerHTML = `${data.title} &nbsp;&nbsp;&nbsp; ${data.title}`;
+              titleEl.classList.add("scroll");
+            } else {
+              titleEl.classList.remove("scroll");
+            }
+          } else {
+            titleEl.innerText = "System Idle";
+            titleEl.classList.remove("scroll");
+            document.getElementById("artist").innerText = "Spotify Offline";
+            artEl.style.display = "none";
+          }
+        } catch (e) {
+          console.error("Poll failed");
+        }
+      }
+
+      setInterval(update, 15000);
+      update();
+    </script>
+  </body>
+</html>

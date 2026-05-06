@@ -1,0 +1,31 @@
+#!/bin/bash
+if [ "$EUID" -ne 0 ]; then
+  echo "Please run as root (use sudo)"
+  exit 1
+fi
+
+SERVICE_NAME="homarr-widgets"
+SERVICE_FILE="/etc/systemd/system/${SERVICE_NAME}.service"
+APP_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+USER_NAME="${SUDO_USER:-$(whoami)}"
+
+cat > "$SERVICE_FILE" << EOF
+[Unit]
+Description=Homarr Widgets Service
+After=network.target
+
+[Service]
+Type=simple
+User=$USER_NAME
+WorkingDirectory=$APP_DIR
+ExecStart=/usr/bin/env node src/server.js
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl daemon-reload
+systemctl enable "$SERVICE_NAME"
+echo "Service $SERVICE_NAME installed and enabled."

@@ -1,0 +1,15 @@
+#!/bin/bash
+if [ "$EUID" -ne 0 ]; then
+  echo "Please run as root (use sudo)"
+  exit 1
+fi
+
+SERVICE_NAME="homarr-widgets"
+SERVICE_FILE="/etc/systemd/system/${SERVICE_NAME}.service"
+
+systemctl stop "$SERVICE_NAME" 2>/dev/null
+systemctl disable "$SERVICE_NAME" 2>/dev/null
+rm -f "$SERVICE_FILE"
+systemctl daemon-reload
+
+echo "Service $SERVICE_NAME uninstalled."

@@ -1,0 +1,21 @@
+{
+  "name": "tui-dashboard",
+  "version": "1.0.0",
+  "description": "Terminal and Web Dashboard for system stats and media",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "cli": "node src/cli.js"
+  },
+  "author": "aariz",
+  "license": "MIT",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1042.0",
+    "blessed": "^0.1.81",
+    "blessed-contrib": "^4.11.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "http-proxy-middleware": "^3.0.5"
+  }
+}

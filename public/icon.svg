@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background -->
+  <rect width="512" height="512" rx="80" fill="#121214"/>
+
+  <!-- Glow -->
+  <rect x="96" y="120" width="320" height="272" rx="24"
+        fill="none" stroke="#38bdf8" stroke-width="6"
+        opacity="0.25"/>
+
+  <!-- Mini PC Body -->
+  <rect x="96" y="120" width="320" height="272" rx="24"
+        fill="#1a1a1f" stroke="#38bdf8" stroke-width="4"/>
+
+  <!-- Drive Bays -->
+  <rect x="128" y="160" width="256" height="48" rx="8" fill="#27272a"/>
+  <rect x="128" y="224" width="256" height="48" rx="8" fill="#27272a"/>
+  <rect x="128" y="288" width="256" height="48" rx="8" fill="#27272a"/>
+
+  <!-- Activity LEDs -->
+  <circle cx="360" cy="184" r="6" fill="#22c55e"/>
+  <circle cx="360" cy="248" r="6" fill="#22c55e"/>
+  <circle cx="360" cy="312" r="6" fill="#22c55e"/>
+
+  <!-- Storage Bar (usage indicator) -->
+  <rect x="128" y="352" width="256" height="16" rx="8" fill="#27272a"/>
+  <rect x="128" y="352" width="180" height="16" rx="8" fill="#38bdf8"/>
+
+  <!-- Power Button -->
+  <circle cx="160" cy="184" r="6" fill="#38bdf8"/>
+</svg>
