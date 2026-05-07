@@ -4,7 +4,7 @@ This project is basically made to display custom system monitoring widgets as if
 
 ## Features
 - **System Monitoring Widgets:** CPU, Memory, Disk (SSD/HDD), Network, Uptime, Temperature.
-- **Media Integration:** Last.fm "Now Playing" and Spotify API integration.
+- **Media Integration:** Last.fm "Now Playing" integration, which pulls scrobbles from your Spotify account (requires Last.fm account and API key).
 - **Web Dashboard:** Express server serving interactive widgets designed to be embedded in Homarr.
 
 ## Setup & Installation
