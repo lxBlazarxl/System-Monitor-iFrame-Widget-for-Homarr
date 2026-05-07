@@ -2,7 +2,6 @@ import "dotenv/config";
 import express from "express";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import memoryRoute from "./routes/memory.js";
-import r2Route from "./routes/r2.js";
 import skylineRoute from "./routes/skyline.js";
 import uptimeNetworkRoute from "./routes/uptime-network.js";
 import ssdRoute from "./routes/ssd.js";
@@ -50,7 +49,6 @@ app.use("/", spotifyRoute);
 app.use("/", skylineRoute);
 app.use("/", uptimeNetworkRoute);
 app.use("/", tempRoute);
-app.use("/", r2Route);
 
 const PORT = 3000;
 const server = app.listen(PORT, "0.0.0.0", () => {
