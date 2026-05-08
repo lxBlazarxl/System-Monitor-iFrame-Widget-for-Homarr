@@ -360,7 +360,7 @@ router.get("/spotify", (req, res) => {
     </div>
 
     <div id="inactive-view">
-      <div class="list-header">Blazar's Top Albums This Week</div>
+      <div class="list-header">Your Top Albums This Week</div>
       <div id="album-list"></div>
     </div>
   </div>
