@@ -49,7 +49,7 @@ This project is basically made to display custom system monitoring widgets as if
 
 ## Available Widgets & API Endpoints
 
-This project provides both interactive HTML widgets (designed for Homarr iframes) and JSON API endpoints.
+Go the URL `http://YOUR_SERVER_IP:3000/`, with any of the following endpoints:
 
 ### System Monitoring
 | Widget | HTML Path | API Path | Description |
