@@ -7,18 +7,45 @@ This project is basically made to display custom system monitoring widgets as if
 - **Media Integration:** Last.fm "Now Playing" integration, which pulls scrobbles from your Spotify account (requires Last.fm account and API key).
 - **Web Dashboard:** Express server serving interactive widgets designed to be embedded in Homarr.
 
-## Setup & Installation
+## Installation and Setup
 
-1. Install dependencies:
+1. Clone the Repository:
+   ```bash
+   git clone https://github.com/lxBlazarxl/System-Monitor-iFrame-Widget-for-Homarr.git
+   ```
+
+2. Install dependencies:
    ```bash
    npm install
    ```
 
-2. Configure environment variables:
+3. Configure environment variables:
    Copy `.env.example` to `.env` and fill in your credentials.
    ```bash
    cp .env.example .env
    ```
+
+4. Install as `systemd` service:
+
+- **Install Service:** Creates and enables the systemd service.
+  ```bash
+  sudo ./iframeinstall
+  ```
+
+- **Start Service:** Starts the background service.
+  ```bash
+  sudo ./iframestart
+  ```
+
+- **Stop Service:** Stops the running service.
+  ```bash
+  sudo ./iframestop
+  ```
+
+- **Uninstall Service:** Stops, disables, and removes the service file.
+  ```bash
+  sudo ./iframedelete
+  ```
 
 ## Available Widgets & API Endpoints
 
@@ -43,30 +70,6 @@ This project provides both interactive HTML widgets (designed for Homarr iframes
 | **Blackhole** | `/blackhole` | - | Animated 3D Three.js Galaxy/Blackhole for fun. |
 | **Time/Greet** | `/time` | `/api/time` | Digital clock and context-aware greeting. |
 | **Combined** | `/uptime-network`| `/api/uptime-network`| Uptime and Network stats in one view. |
-
-## Background Service Management
-
-This project includes scripts to easily run it as a background service on Linux using systemd. 
-
-- **Install Service:** Creates and enables the systemd service.
-  ```bash
-  sudo ./iframeinstall
-  ```
-
-- **Start Service:** Starts the background service.
-  ```bash
-  sudo ./iframestart
-  ```
-
-- **Stop Service:** Stops the running service.
-  ```bash
-  sudo ./iframestop
-  ```
-
-- **Uninstall Service:** Stops, disables, and removes the service file.
-  ```bash
-  sudo ./iframedelete
-  ```
 
 ## Development
 
