@@ -41,7 +41,7 @@ export function getTime() {
   }
   if (hour >= 6 && hour < 12) {
     return {
-      greeting: "Good Morning, Blazar",
+      greeting: "Good Morning",
       day_name: dayName,
       month: parts[1],
       day: day,
@@ -51,7 +51,7 @@ export function getTime() {
   }
   if (hour >= 12 && hour < 17) {
     return {
-      greeting: "Good Afternoon, Blazar",
+      greeting: "Good Afternoon",
       day_name: dayName,
       month: parts[1],
       day: day,
@@ -61,7 +61,7 @@ export function getTime() {
   }
   if (hour >= 17 && hour < 21) {
     return {
-      greeting: "Good Evening, Blazar",
+      greeting: "Good Evening",
       day_name: dayName,
       month: parts[1],
       day: day,
@@ -71,7 +71,7 @@ export function getTime() {
   }
   if (hour >= 21 && hour <= 24) {
     return {
-      greeting: "Good Night, Blazar",
+      greeting: "Good Night",
       day_name: dayName,
       month: parts[1],
       day: day,
