@@ -3,32 +3,23 @@ import os from "os";
 
 const router = express.Router();
 
-function getCpuUsage() {
-  return new Promise((resolve) => {
-    const cpus = os.cpus();
-    const startIdle = cpus.reduce((acc, core) => acc + core.times.idle, 0);
-    const startTotal = cpus.reduce((acc, core) => {
-      return (
-        acc + Object.values(core.times).reduce((sum, time) => sum + time, 0)
-      );
-    }, 0);
-    setTimeout(() => {
-      const endCpus = os.cpus();
-      const endIdle = endCpus.reduce((acc, core) => acc + core.times.idle, 0);
-      const endTotal = endCpus.reduce((acc, core) => {
-        return (
-          acc + Object.values(core.times).reduce((sum, time) => sum + time, 0)
-        );
-      }, 0);
+function getCpuTimes() {
+  let idle = 0, total = 0;
+  for (const { times } of os.cpus()) {
+    idle += times.idle;
+    for (const type in times) total += times[type];
+  }
+  return { idle, total };
+}
 
-      const idleDiff = endIdle - startIdle;
-      const totalDiff = endTotal - startTotal;
-      const percent =
-        totalDiff === 0 ? 0 : 100 - Math.round((idleDiff / totalDiff) * 100);
+async function getCpuUsage() {
+  const start = getCpuTimes();
+  await new Promise((resolve) => setTimeout(resolve, 100));
+  const end = getCpuTimes();
 
-      resolve(percent);
-    }, 100);
-  });
+  const idleDiff = end.idle - start.idle;
+  const totalDiff = end.total - start.total;
+  return totalDiff === 0 ? 0 : 100 - Math.round((idleDiff / totalDiff) * 100);
 }
 router.get("/api/cpu", async (req, res) => {
   const usage = await getCpuUsage();
@@ -58,7 +49,7 @@ router.get("/cpu", async (req, res) => {
       --bg: #121214;
       --border: rgba(255, 255, 255, 0.06);
       --text: #ffffff;
-      --text-dim: #fff;
+      --text-dim: #a1a1aa;
       --text-glow: rgba(255, 255, 255, 0.3);
     }
 
