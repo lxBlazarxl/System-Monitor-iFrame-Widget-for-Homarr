@@ -14,7 +14,6 @@ import spotifyRoute from "./routes/spotify.js";
 import timeGreetRoute from "./routes/time.js";
 
 const app = express();
-app.use(express.static("public"));
 
 app.use("/", uptimeRoute);
 app.use("/", networkRoute);
