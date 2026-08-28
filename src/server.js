@@ -16,28 +16,6 @@ import timeGreetRoute from "./routes/time.js";
 const app = express();
 app.use(express.static("public"));
 
-app.use(
-  "/disk",
-  createProxyMiddleware({
-    target: "http://10.200.200.5:3000",
-    changeOrigin: true,
-    pathRewrite: function (path, req) {
-      return "/disk";
-    },
-    on: {
-      proxyRes: (proxyRes, req, res) => {
-        delete proxyRes.headers["x-frame-options"];
-        delete proxyRes.headers["content-security-policy"];
-      },
-      proxyReq: (proxyReq, req, res) => {
-        console.log(
-          `[Proxy] Forwarding request to: ${proxyReq.protocol}//${proxyReq.host}${proxyReq.path}`,
-        );
-      },
-    },
-  }),
-);
-
 app.use("/", uptimeRoute);
 app.use("/", networkRoute);
 app.use("/", cpuRoute);
